@@ -1,6 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Proptypes from "prop-types";
 
-function AddTodo() {
+export default function AddTodo({ todoData, setTodoData }) {
+  const [newTodo, setNewTodo] = useState("");
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!newTodo.trim()) return;
+
+    const newTodoList = {
+      id: todoData.length + 1,
+      task: newTodo,
+      complete: false,
+    };
+
+    setTodoData((prevTodoData) => [...prevTodoData, newTodoList]);
+    setNewTodo("");
+
+    navigate("/");
+  }
   return (
     <>
       <div className="container d-flex justify-content-center align-items-center vh-100">
@@ -11,18 +32,26 @@ function AddTodo() {
               <Link to="/">
                 <img width="35px" height="35px" src="prev.svg" alt="prev.svg" />
               </Link>
-              <div className="d-flex mt-2">
-                <div className="bg-primary p-1">
-                  <img
-                    width="25px"
-                    height="25px"
-                    src="paper.svg"
-                    alt="paper.svg"
+              <form onSubmit={handleSubmit}>
+                <div className="d-flex mt-2">
+                  <div className="bg-primary p-1">
+                    <img
+                      width="25px"
+                      height="25px"
+                      src="paper.svg"
+                      alt="paper.svg"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Add Todo"
+                    className="w-100"
+                    value={newTodo}
+                    onChange={(e) => setNewTodo(e.target.value)}
                   />
                 </div>
-                <input type="text" placeholder="Add Todo" className="w-100" />
-              </div>
-              <button className="btn btn-primary w-100 mt-2 ">Submit</button>
+                <button className="btn btn-primary w-100 mt-2 ">Submit</button>
+              </form>
             </div>
           </div>
         </div>
@@ -31,4 +60,7 @@ function AddTodo() {
   );
 }
 
-export default AddTodo;
+AddTodo.propTypes = {
+  todoData: Proptypes.array,
+  setTodoData: Proptypes.func,
+};
