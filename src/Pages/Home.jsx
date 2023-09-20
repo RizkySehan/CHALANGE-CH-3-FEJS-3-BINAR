@@ -1,12 +1,26 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 import Filter from "../Components/Filter";
 import Search from "../Components/Search";
 import Button from "../Components/Button";
 
 function Home({ todoData, setTodoData }) {
-  const [filterData, setFilterData] = useState([...todoData]);
+  const handleCheckboxItem = (itemId) => {
+    setTodoData((prevTodoData) =>
+      prevTodoData.map((item) =>
+        item.id === itemId ? { ...item, complete: !item.complete } : item
+      )
+    );
+  };
+
+  const handleDeleteItem = (itemId) => {
+    const confirmDelete = window.confirm("Are you sure want to delete a task?");
+    if (confirmDelete) {
+      setTodoData((prevTodoData) =>
+        prevTodoData.filter((item) => item.id !== itemId)
+      );
+    }
+  };
 
   const handleDeleteDoneTask = () => {
     const confirmDelete = window.confirm(
@@ -36,7 +50,7 @@ function Home({ todoData, setTodoData }) {
         <div className="row">
           <div className="col-12">
             <ul className="list-inline">
-              {filterData.map((item) => (
+              {todoData.map((item) => (
                 <div
                   key={item.id}
                   className="d-flex justify-content-between border rounded m-2 p-2"
@@ -54,7 +68,9 @@ function Home({ todoData, setTodoData }) {
                     <input
                       type="checkbox"
                       className="me-2"
+                      checked={item.complete}
                       style={{ width: "20px", height: "20px" }}
+                      onChange={() => handleCheckboxItem(item.id)}
                     />
 
                     <button className="border-0 bg-transparent">
@@ -65,12 +81,16 @@ function Home({ todoData, setTodoData }) {
                         alt="Edit.svg"
                       />
                     </button>
-                    <button className="border-0 bg-transparent">
+                    <button
+                      className="border-0 bg-transparent"
+                      aria-label="button trash"
+                      onClick={() => handleDeleteItem(item.id)}
+                    >
                       <img
                         width="25px"
                         height="25px"
                         src="trash.svg"
-                        alt="trash.svg"
+                        alt="trash"
                       />
                     </button>
                   </div>
