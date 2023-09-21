@@ -1,4 +1,15 @@
-function Filter() {
+import { useState } from "react";
+import Button from "./Button";
+import PropTypes from "prop-types";
+
+function Filter({ onFilterChange }) {
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const handleFilterChange = (filter) => {
+    setActiveFilter(filter);
+    onFilterChange(filter);
+  };
+
   return (
     <>
       <div className="mb-5">
@@ -6,9 +17,27 @@ function Filter() {
         <div className="container-fluid p-3">
           <div className="row">
             <div className="col-12 d-flex justify-content-evenly gap-5">
-              <button className="btn btn-primary fs-5 w-100">All</button>
-              <button className="btn btn-primary fs-5 w-100">Done</button>
-              <button className="btn btn-primary fs-5 w-100">Todo</button>
+              <Button
+                bgColor={
+                  activeFilter === "All" ? "btn btn-danger" : "btn btn-primary"
+                }
+                text="All"
+                onClick={() => handleFilterChange("All")}
+              />
+              <Button
+                bgColor={
+                  activeFilter === "Done" ? "btn btn-danger" : "btn btn-primary"
+                }
+                text="Done"
+                onClick={() => handleFilterChange("Done")}
+              />
+              <Button
+                bgColor={
+                  activeFilter === "Todo" ? "btn btn-danger" : "btn btn-primary"
+                }
+                text="Todo"
+                onClick={() => handleFilterChange("Todo")}
+              />
             </div>
           </div>
         </div>
@@ -16,5 +45,9 @@ function Filter() {
     </>
   );
 }
+
+Filter.propTypes = {
+  onFilterChange: PropTypes.func,
+};
 
 export default Filter;

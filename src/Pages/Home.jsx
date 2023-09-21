@@ -3,8 +3,34 @@ import PropTypes from "prop-types";
 import Filter from "../Components/Filter";
 import Search from "../Components/Search";
 import Button from "../Components/Button";
+import { useEffect, useState } from "react";
 
 function Home({ todoData, setTodoData }) {
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [filteredData, setFilteredData] = useState([...todoData]);
+
+  useEffect(() => {
+    setActiveFilter("All");
+  }, [todoData]);
+
+  useEffect(() => {
+    const filtered = todoData.filter((item) => {
+      if (activeFilter === "All") {
+        return true;
+      } else if (activeFilter === "Done") {
+        return item.complete;
+      } else if (activeFilter === "Todo") {
+        return !item.complete;
+      }
+      return true;
+    });
+    setFilteredData(filtered);
+  }, [todoData, activeFilter]);
+
+  const handleFilterChange = (filter) => {
+    setActiveFilter(filter);
+  };
+
   const handleCheckboxItem = (itemId) => {
     setTodoData((prevTodoData) =>
       prevTodoData.map((item) =>
@@ -45,12 +71,12 @@ function Home({ todoData, setTodoData }) {
   return (
     <div className="container border mt-5 p-5">
       <Search />
-      <Filter />
+      <Filter onFilterChange={handleFilterChange} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
             <ul className="list-inline">
-              {todoData.map((item) => (
+              {filteredData.map((item) => (
                 <div
                   key={item.id}
                   className="d-flex justify-content-between border rounded m-2 p-2"
