@@ -86,108 +86,106 @@ function Home({ todoData, setTodoData }) {
   };
 
   return (
-    <div className="container ">
-      <div className="container-fluid border mt-5 p-5">
-        <Search todoData={todoData} setFilteredData={setFilteredData} />
-        <Filter onFilterChange={handleFilterChange} />
-        <div className="container-fluid">
-          <div className="row">
-            <ul className="list-inline">
-              {filteredData.map((item) => (
-                <div
-                  key={item.id}
-                  className="d-flex justify-content-between border rounded m-2 p-2"
-                >
-                  {editItemId === item.id ? (
-                    <div className="w-100">
-                      <input
-                        type="text"
-                        className="w-100"
-                        value={editItemText}
-                        onChange={(e) => setEditItemText(e.target.value)}
-                        autoFocus
-                      />
-                    </div>
-                  ) : (
-                    <li
-                      className={
-                        item.complete
-                          ? "text-decoration-line-through text-danger"
-                          : "list-ineline-item"
-                      }
-                    >
-                      {item.task}
-                    </li>
-                  )}
-                  <div className="d-flex justify-content-center align-items-center mx-1 gap-2">
+    <div className="container-fluid mt-4 mb-5">
+      <Search todoData={todoData} setFilteredData={setFilteredData} />
+      <Filter onFilterChange={handleFilterChange} />
+      <div className="container ">
+        <div className="row">
+          <ul className="list-inline">
+            {filteredData.map((item) => (
+              <div
+                key={item.id}
+                className="d-flex justify-content-between border rounded m-2 p-2"
+              >
+                {editItemId === item.id ? (
+                  <div className="w-100">
                     <input
-                      type="checkbox"
-                      className="me-2"
-                      checked={item.complete}
-                      style={{ width: "20px", height: "20px" }}
-                      onChange={() => handleCheckboxItem(item.id)}
+                      type="text"
+                      className="w-100"
+                      value={editItemText}
+                      onChange={(e) => setEditItemText(e.target.value)}
+                      autoFocus
                     />
-                    {editItemId === item.id ? (
-                      <button
-                        className="border-0 bg-transparent"
-                        aria-label="button ceklis"
-                        onClick={() => handleSaveEdit(item.id)}
-                      >
-                        <img
-                          width="25px"
-                          height="25px"
-                          src="ceklis.svg"
-                          alt="ceklis.svg"
-                        />
-                      </button>
-                    ) : (
-                      <button
-                        className="border-0 bg-transparent"
-                        aria-label="button edit"
-                        onClick={() => handleEdit(item.id, item.task)}
-                      >
-                        <img
-                          width="25px"
-                          height="25px"
-                          src="edit.svg"
-                          alt="Edit.svg"
-                        />
-                      </button>
-                    )}
+                  </div>
+                ) : (
+                  <li
+                    className={
+                      item.complete
+                        ? "text-decoration-line-through text-danger"
+                        : "list-ineline-item"
+                    }
+                  >
+                    {item.task}
+                  </li>
+                )}
+                <div className="d-flex justify-content-center align-items-center mx-1 gap-2">
+                  <input
+                    type="checkbox"
+                    className="me-2"
+                    checked={item.complete}
+                    style={{ width: "20px", height: "20px" }}
+                    onChange={() => handleCheckboxItem(item.id)}
+                  />
+                  {editItemId === item.id ? (
                     <button
                       className="border-0 bg-transparent"
-                      aria-label="button trash"
-                      onClick={() => handleDeleteItem(item.id)}
+                      aria-label="button ceklis"
+                      onClick={() => handleSaveEdit(item.id)}
                     >
                       <img
                         width="25px"
                         height="25px"
-                        src="trash.svg"
-                        alt="trash"
+                        src="ceklis.svg"
+                        alt="ceklis.svg"
                       />
                     </button>
-                  </div>
+                  ) : (
+                    <button
+                      className="border-0 bg-transparent"
+                      aria-label="button edit"
+                      onClick={() => handleEdit(item.id, item.task)}
+                    >
+                      <img
+                        width="25px"
+                        height="25px"
+                        src="edit.svg"
+                        alt="Edit.svg"
+                      />
+                    </button>
+                  )}
+                  <button
+                    className="border-0 bg-transparent"
+                    aria-label="button trash"
+                    onClick={() => handleDeleteItem(item.id)}
+                  >
+                    <img
+                      width="25px"
+                      height="25px"
+                      src="trash.svg"
+                      alt="trash"
+                    />
+                  </button>
                 </div>
-              ))}
-            </ul>
-          </div>
+              </div>
+            ))}
+          </ul>
         </div>
-        <div className="container">
-          <div className="row mt-3">
-            <div className="col-6">
-              <Button
-                onClick={handleDeleteDoneTask}
-                text="Delete done task"
-                bgColor="btn btn-danger"
-              />
-            </div>
-            <div className="col-6">
-              <Button
-                onClick={handleDeleteAllTask}
-                text="Delete all task"
-                bgColor="btn btn-danger"
-              />
-            </div>
+      </div>
+      <div className="container">
+        <div className="row mt-3">
+          <div className="col-6">
+            <Button
+              onClick={handleDeleteDoneTask}
+              text="Delete done task"
+              bgColor="btn btn-danger"
+            />
+          </div>
+          <div className="col-6">
+            <Button
+              onClick={handleDeleteAllTask}
+              text="Delete all task"
+              bgColor="btn btn-danger"
+            />
           </div>
         </div>
       </div>

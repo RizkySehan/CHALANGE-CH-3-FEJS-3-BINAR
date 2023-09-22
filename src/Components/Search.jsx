@@ -33,7 +33,7 @@ function Search({ todoData, setFilteredData }) {
                 <input
                   type="text"
                   placeholder="Search Todo"
-                  className="w-100"
+                  className="w-100 rounded border "
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />

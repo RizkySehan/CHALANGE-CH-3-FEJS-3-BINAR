@@ -45,7 +45,7 @@ export default function AddTodo({ todoData, setTodoData }) {
                   <input
                     type="text"
                     placeholder="Add Todo"
-                    className="w-100"
+                    className="w-100 rounded border"
                     value={newTodo}
                     onChange={(e) => setNewTodo(e.target.value)}
                   />
