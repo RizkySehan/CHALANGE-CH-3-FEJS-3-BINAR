@@ -86,12 +86,12 @@ function Home({ todoData, setTodoData }) {
   };
 
   return (
-    <div className="container border mt-5 p-5">
-      <Search todoData={todoData} setFilteredData={setFilteredData} />
-      <Filter onFilterChange={handleFilterChange} />
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-12">
+    <div className="container ">
+      <div className="container-fluid border mt-5 p-5">
+        <Search todoData={todoData} setFilteredData={setFilteredData} />
+        <Filter onFilterChange={handleFilterChange} />
+        <div className="container-fluid">
+          <div className="row">
             <ul className="list-inline">
               {filteredData.map((item) => (
                 <div
@@ -172,22 +172,22 @@ function Home({ todoData, setTodoData }) {
             </ul>
           </div>
         </div>
-      </div>
-      <div className="container">
-        <div className="row mt-3">
-          <div className="col-6">
-            <Button
-              onClick={handleDeleteDoneTask}
-              text="Delete done task"
-              bgColor="btn btn-danger"
-            />
-          </div>
-          <div className="col-6">
-            <Button
-              onClick={handleDeleteAllTask}
-              text="Delete all task"
-              bgColor="btn btn-danger"
-            />
+        <div className="container">
+          <div className="row mt-3">
+            <div className="col-6">
+              <Button
+                onClick={handleDeleteDoneTask}
+                text="Delete done task"
+                bgColor="btn btn-danger"
+              />
+            </div>
+            <div className="col-6">
+              <Button
+                onClick={handleDeleteAllTask}
+                text="Delete all task"
+                bgColor="btn btn-danger"
+              />
+            </div>
           </div>
         </div>
       </div>

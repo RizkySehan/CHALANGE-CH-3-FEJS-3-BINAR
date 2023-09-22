@@ -13,10 +13,10 @@ function Filter({ onFilterChange }) {
   return (
     <>
       <div className="mb-5">
-        <h1 className="text-center fw-bold my-3">Todo List</h1>
-        <div className="container-fluid p-3">
-          <div className="row">
-            <div className="col-12 d-flex justify-content-evenly gap-5">
+        <h1 className="text-center my-3">TodoList</h1>
+        <div className="container">
+          <div className="row d-flex justify-content-between">
+            <div className="col-4">
               <Button
                 bgColor={
                   activeFilter === "All" ? "btn btn-danger" : "btn btn-primary"
@@ -24,6 +24,8 @@ function Filter({ onFilterChange }) {
                 text="All"
                 onClick={() => handleFilterChange("All")}
               />
+            </div>
+            <div className="col-4">
               <Button
                 bgColor={
                   activeFilter === "Done" ? "btn btn-danger" : "btn btn-primary"
@@ -31,6 +33,8 @@ function Filter({ onFilterChange }) {
                 text="Done"
                 onClick={() => handleFilterChange("Done")}
               />
+            </div>
+            <div className="col-4">
               <Button
                 bgColor={
                   activeFilter === "Todo" ? "btn btn-danger" : "btn btn-primary"

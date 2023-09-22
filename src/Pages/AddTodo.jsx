@@ -28,7 +28,7 @@ export default function AddTodo({ todoData, setTodoData }) {
         <div className="container-fluid">
           <div className="row d-flex justify-content-center align-items-center">
             <h1 className="text-center fw-bold my-3">TodoInput</h1>
-            <div className="col-8 border rounded p-4  ">
+            <div className="col-md-8 border rounded p-4  ">
               <Link to="/">
                 <img width="35px" height="35px" src="prev.svg" alt="prev.svg" />
               </Link>

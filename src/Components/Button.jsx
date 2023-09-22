@@ -5,7 +5,7 @@ function Button(props) {
 
   const className = `${
     bgColor === undefined ? "btn btn-primary" : bgColor
-  } mt-2 w-100 fs-5`;
+  } mt-2 w-100`;
 
   return (
     <button
