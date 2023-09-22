@@ -12,7 +12,7 @@ export default function AddTodo({ todoData, setTodoData }) {
     if (!newTodo.trim()) return;
 
     const newTodoList = {
-      id: todoData.length + 1,
+      id: todoData.length + 10,
       task: newTodo,
       complete: false,
     };
@@ -48,6 +48,7 @@ export default function AddTodo({ todoData, setTodoData }) {
                     className="w-100 rounded border"
                     value={newTodo}
                     onChange={(e) => setNewTodo(e.target.value)}
+                    autoFocus
                   />
                 </div>
                 <button className="btn btn-primary w-100 mt-2 ">Submit</button>
