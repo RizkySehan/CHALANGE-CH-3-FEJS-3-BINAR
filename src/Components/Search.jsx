@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { FaSearch } from "react-icons/fa";
 
 function Search({ todoData, setFilteredData }) {
   const [search, setSearch] = useState("");
@@ -22,18 +23,13 @@ function Search({ todoData, setFilteredData }) {
               <div className="d-flex">
                 <div className="bg-primary p-1">
                   <label htmlFor="Search Todo">
-                    <img
-                      width="30px"
-                      height="30px"
-                      src="search.svg"
-                      alt="search.svg"
-                    />
+                    <FaSearch size={25} style={{ color: "white" }} />
                   </label>
                 </div>
                 <input
                   type="text"
                   placeholder="Search Todo"
-                  className="w-100 rounded border "
+                  className="w-100 rounded border"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />

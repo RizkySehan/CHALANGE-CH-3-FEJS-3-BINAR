@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Proptypes from "prop-types";
+import { FaBook } from "react-icons/fa";
+import { SlActionUndo } from "react-icons/sl";
 
 export default function AddTodo({ todoData, setTodoData }) {
   const [newTodo, setNewTodo] = useState("");
@@ -30,17 +32,12 @@ export default function AddTodo({ todoData, setTodoData }) {
             <h1 className="text-center fw-bold my-3">TodoInput</h1>
             <div className="col-md-8 border rounded p-4  ">
               <Link to="/">
-                <img width="35px" height="35px" src="prev.svg" alt="prev.svg" />
+                <SlActionUndo size={35} style={{ color: "rgb(37 99 235)" }} />
               </Link>
               <form onSubmit={handleSubmit}>
                 <div className="d-flex mt-2">
                   <div className="bg-primary p-1">
-                    <img
-                      width="25px"
-                      height="25px"
-                      src="paper.svg"
-                      alt="paper.svg"
-                    />
+                    <FaBook size={25} style={{ color: "white" }} />
                   </div>
                   <input
                     type="text"
